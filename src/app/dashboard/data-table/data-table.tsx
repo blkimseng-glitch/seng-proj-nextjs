@@ -39,13 +39,10 @@ export function DataTable<TData extends RowData>({
   data,
 }: DataTableProps<TData>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
-
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<ColumnVisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<ColumnVisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
   const table = useTable({
     features,
     data,
@@ -64,17 +61,18 @@ const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 
   return (
     <div>
-        <div className="flex items-center py-4">
+      <div className="flex items-center py-4">
+        {/* កែប្រែពី "email" មក "title" នៅត្រង់នេះ */}
         <Input
-          placeholder="Serach Product..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Search Product..."
+          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("title")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
       </div>
-      <div className="overflow-hidden rounded-md border"></div>
+
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>
@@ -119,6 +117,7 @@ const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
           </TableBody>
         </Table>
       </div>
+
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
