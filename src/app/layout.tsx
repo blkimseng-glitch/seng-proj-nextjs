@@ -4,6 +4,10 @@ import "./globals.css";
 import { NavbarComponent } from "@/components/NavbarComponent";
 import { FooterComponent } from "@/components/FooterComponent";
 import AudioFrqCard from "@/components/shadcn-space/card/card-07";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import NetworkStatusProvider from "@/components/NetworkStatusProvider";
+import StyledComponentsRegistry from "@/StyleComponentRegistry";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,14 +30,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body >
+      <body>
         <NavbarComponent />
-        {children}
-   
-        <FooterComponent/>
-      </body>
+          
+        <StyledComponentsRegistry>
+          <NetworkStatusProvider>
+               {children}
 
-  
+          </NetworkStatusProvider>
+       
+        </StyledComponentsRegistry>
+        <FooterComponent />
+      </body>
     </html>
   );
 }
