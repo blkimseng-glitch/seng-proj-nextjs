@@ -1,7 +1,7 @@
 import ProductDetailCardComponent from "@/components/product/ProductDetailCardComponent";
 import React from "react";
 
-export default async function Page({
+export default async function  ProductDetailPage({
   params,
 }: {
   params: Promise<{ id: string[] | string }>;

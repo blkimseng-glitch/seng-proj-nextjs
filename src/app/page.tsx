@@ -3,14 +3,18 @@ import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 
 // static metadata for product page
 export const metadata: Metadata = {
-  title: 'HomePage',
-  description: "This is product page which list down many products from the website.",
-  keywords: 'Product, Clothes for men, Clothes for women, Clothes for kids, E-Commerce website.',
-  openGraph:{
-     title:'Products',
-     description: 'This is product page which list down many products from the website.',
-     images: ['A1_Thumbnail_project.png']
-  }
+  title:'Homepage',
+  description: "Block Commerce is a decentralized e-commerce platform that allows users to buy and sell products using blockchain technology.",
+keywords: 'Product, Clothes for men, Clothes for Women, E-commerce Website',
+
+openGraph:{
+  title:{
+template: '%s | BlockCommerce',
+default: 'BlockCommerce'
+  } ,
+  description:'Block Commerce is a decentralized e-commerce platform that allows users to buy and sell products using blockchain technology.',
+  images:['public/Thumbnail_A1.png']
+}
 };
 
 export default function Home() {

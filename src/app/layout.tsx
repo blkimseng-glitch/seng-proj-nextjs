@@ -34,7 +34,7 @@ template: '%s | BlockCommerce',
 default: 'BlockCommerce'
   } ,
   description:'Block Commerce is a decentralized e-commerce platform that allows users to buy and sell products using blockchain technology.',
-  images:['Thumbnail_A1.png']
+  images:['public/Thumbnail_A1.png']
 }
 };
 
