@@ -1,7 +1,7 @@
 import ProductDetailCardComponent from "@/components/product/ProductDetailCardComponent";
 import React from "react";
 
-export default async function  ProductDetailPage({
+export default async function ProductDetailPage({
   params,
 }: {
   params: Promise<{ id: string[] | string }>;
@@ -13,9 +13,15 @@ export default async function  ProductDetailPage({
     ? resolvedParams.id[0]
     : resolvedParams.id;
 
-  // 1. Fetch raw product
-  const baseURL = process.env.NEXT_PUBLIC_FAKE_API || "https://fakestoreapi.com";
-  const res = await fetch(`${baseURL}/${productId}`);
+  // 1. បង្កើត API URL ដោយសុវត្ថិភាព (ការពារស្ទួន /products ឬបាត់ /products)
+  const envUrl = process.env.NEXT_PUBLIC_FAKE_API || "https://fakestoreapi.com";
+  const cleanBaseUrl = envUrl.replace(/\/products\/?$/, "").replace(/\/$/, "");
+  const fetchUrl = `${cleanBaseUrl}/products/${productId}`;
+
+  // 2. Fetch ជាមួយនឹង { cache: "no-store" } ដើម្បីកុំឱ្យជាប់ Cache 404 ចាស់
+  const res = await fetch(fetchUrl, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return <div className="p-8 text-center">Product not found</div>;
@@ -23,7 +29,11 @@ export default async function  ProductDetailPage({
 
   const rawProduct = await res.json();
 
-  // 2. Transform FakeStore API data to match component expectations
+  if (!rawProduct || !rawProduct.id) {
+    return <div className="p-8 text-center">Product not found</div>;
+  }
+
+  // 3. Transform Data
   const formattedProduct = {
     id: rawProduct.id,
     title: rawProduct.title,
