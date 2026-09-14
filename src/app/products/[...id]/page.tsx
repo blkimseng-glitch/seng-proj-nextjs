@@ -14,7 +14,7 @@ export default async function  ProductDetailPage({
     : resolvedParams.id;
 
   // 1. Fetch raw product
-  const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
+  const res = await fetch(`FAKE_API/${productId}`);
 
   if (!res.ok) {
     return <div className="p-8 text-center">Product not found</div>;
