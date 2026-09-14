@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph:{
      title:'Products',
      description: 'This is product page which list down many products from the website.',
-     images: ['A1_Thumbnail_project.png']
+     images: ['Thumbnail_A1.png']
   }
 };
 
