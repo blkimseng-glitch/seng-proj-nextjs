@@ -14,7 +14,7 @@ export default async function  ProductDetailPage({
     : resolvedParams.id;
 
   // 1. Fetch raw product
-  const baseURL = process.env.NEXT_PUBLIC_FAKE_API;
+  const baseURL = process.env.NEXT_PUBLIC_FAKE_API || "https://fakestoreapi.com/products";
   const res = await fetch(`${baseURL}/${productId}`);
 
   if (!res.ok) {
