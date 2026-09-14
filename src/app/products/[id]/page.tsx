@@ -4,22 +4,12 @@ import React from "react";
 export default async function ProductDetailPage({
   params,
 }: {
-  params: Promise<{ id: string[] | string }>;
+  params: Promise<{ id: string }>;
 }) {
-  const resolvedParams = await params;
+  const { id } = await params;
 
-  // Handle catch-all route array ([...id])
-  const productId = Array.isArray(resolvedParams.id)
-    ? resolvedParams.id[0]
-    : resolvedParams.id;
-
-  // 1. បង្កើត API URL ដោយសុវត្ថិភាព (ការពារស្ទួន /products ឬបាត់ /products)
-  const envUrl = process.env.NEXT_PUBLIC_FAKE_API || "https://fakestoreapi.com";
-  const cleanBaseUrl = envUrl.replace(/\/products\/?$/, "").replace(/\/$/, "");
-  const fetchUrl = `${cleanBaseUrl}/products/${productId}`;
-
-  // 2. Fetch ជាមួយនឹង { cache: "no-store" } ដើម្បីកុំឱ្យជាប់ Cache 404 ចាស់
-  const res = await fetch(fetchUrl, {
+  // Fetch ផ្ទាល់ទៅ API
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
     cache: "no-store",
   });
 
@@ -33,7 +23,6 @@ export default async function ProductDetailPage({
     return <div className="p-8 text-center">Product not found</div>;
   }
 
-  // 3. Transform Data
   const formattedProduct = {
     id: rawProduct.id,
     title: rawProduct.title,
