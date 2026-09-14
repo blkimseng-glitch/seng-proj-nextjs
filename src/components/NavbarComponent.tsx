@@ -77,10 +77,10 @@ const NavbarComponent = ({
           url: "/products",
         },
         {
-          title: "Company",
+          title: "Dashboard",
           description: "Our mission is to innovate and empower the world",
           icon: <Trees className="size-5 shrink-0" />,
-          url: "#",
+          url: "/dashboard",
         },
         {
           title: "Careers",
@@ -137,8 +137,8 @@ const NavbarComponent = ({
     },
   ],
   auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
+    login: { title: "Login", url: "/auth/login" },
+    signup: { title: "Sign up", url: "/auth/register" },
   },
   className,
 }: Navbar1Props) => {
