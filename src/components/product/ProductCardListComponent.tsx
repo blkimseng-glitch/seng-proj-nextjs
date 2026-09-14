@@ -13,7 +13,7 @@ export default function ProductCardListComponent() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`FAKE_API`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_FAKE_API}`);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
